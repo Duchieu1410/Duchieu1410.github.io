@@ -10,13 +10,14 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg, #4b3ca7, #2b2d6e);
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      overflow: hidden;
+
+      animation: pageFade 1s ease forwards;
     }
 
     /* ---------- Container ---------- */
@@ -24,12 +25,14 @@
       text-align: center;
       width: 100%;
       max-width: 400px;
-      padding: 28px;
-      border-radius: 18px;
+      padding: 30px;
+      border-radius: 20px;
+
       background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
 
       animation: fadeUp 0.8s ease forwards;
     }
@@ -37,18 +40,19 @@
     /* ---------- Text ---------- */
     h1 {
       margin: 10px 0 6px;
-      font-size: 1.8rem;
+      font-size: 1.85rem;
+      letter-spacing: 0.3px;
     }
 
     p {
       opacity: 0.85;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .interests {
       font-size: 0.95rem;
       opacity: 0.75;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     /* ---------- Buttons ---------- */
@@ -56,50 +60,42 @@
       position: relative;
       display: block;
       text-decoration: none;
-      color: #1e3c72;
-      background: white;
+
+      color: #3a2fa0;
+      background: linear-gradient(135deg, #ffffff, #f0efff);
+
       padding: 14px;
       margin: 14px 0;
-      border-radius: 12px;
+      border-radius: 14px;
       font-weight: 600;
-      overflow: hidden;
 
-      transform: translateY(10px);
       opacity: 0;
+      transform: translateY(10px);
       animation: buttonIn 0.6s ease forwards;
+
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* Stagger animation */
+    /* Stagger */
     a.button:nth-of-type(1) { animation-delay: 0.2s; }
     a.button:nth-of-type(2) { animation-delay: 0.3s; }
     a.button:nth-of-type(3) { animation-delay: 0.4s; }
     a.button:nth-of-type(4) { animation-delay: 0.5s; }
     a.button:nth-of-type(5) { animation-delay: 0.6s; }
 
-    a.button::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.6),
-        transparent
-      );
-      transform: translateX(-100%);
-    }
-
-    a.button:hover::before {
-      transform: translateX(100%);
-      transition: transform 0.6s ease;
-    }
-
     a.button:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+      transform: translateY(-4px);
+      box-shadow:
+        0 15px 30px rgba(76, 60, 167, 0.35),
+        0 0 0 1px rgba(120, 100, 255, 0.25);
     }
 
     /* ---------- Animations ---------- */
+    @keyframes pageFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -126,7 +122,7 @@
     <h1>Tran Huu Duc Hieu</h1>
 
     <p>Informatics Student at HUS High School for Gifted Students</p>
-    <p class="interests">🎸 Guitar · ⚽ Football</p>
+    <p class="interests">🎸 Guitar · ⚽ Football · 🤖 Arduino</p>
 
     <a class="button" href="https://instagram.com/thdh__1410" target="_blank">
       📸 Instagram
