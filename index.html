@@ -12,19 +12,28 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(135deg, #4b3ca7, #2b2d6e);
       color: white;
+      min-height: 100vh;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
 
       animation: pageFade 1s ease forwards;
     }
 
-    /* ---------- Container ---------- */
-    .container {
-      text-align: center;
+    /* ---------- Layout ---------- */
+    .layout {
+      display: flex;
+      gap: 24px;
+      padding: 20px;
+      max-width: 900px;
       width: 100%;
-      max-width: 400px;
+    }
+
+    /* ---------- Main Card ---------- */
+    .container {
+      flex: 1;
+      text-align: center;
       padding: 30px;
       border-radius: 20px;
 
@@ -33,15 +42,54 @@
       -webkit-backdrop-filter: blur(16px);
 
       box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-
       animation: fadeUp 0.8s ease forwards;
+    }
+
+    /* ---------- Sidebar ---------- */
+    .sidebar {
+      width: 280px;
+      padding: 26px;
+      border-radius: 20px;
+
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+
+      animation: fadeRight 0.9s ease forwards;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+      letter-spacing: 0.3px;
+    }
+
+    .achievement {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .achievement:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 10px 20px rgba(0,0,0,0.25),
+        inset 0 0 0 1px rgba(160,140,255,0.4);
     }
 
     /* ---------- Text ---------- */
     h1 {
       margin: 10px 0 6px;
       font-size: 1.85rem;
-      letter-spacing: 0.3px;
     }
 
     p {
@@ -57,13 +105,10 @@
 
     /* ---------- Buttons ---------- */
     a.button {
-      position: relative;
       display: block;
       text-decoration: none;
-
       color: #3a2fa0;
       background: linear-gradient(135deg, #ffffff, #f0efff);
-
       padding: 14px;
       margin: 14px 0;
       border-radius: 14px;
@@ -72,11 +117,9 @@
       opacity: 0;
       transform: translateY(10px);
       animation: buttonIn 0.6s ease forwards;
-
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* Stagger */
     a.button:nth-of-type(1) { animation-delay: 0.2s; }
     a.button:nth-of-type(2) { animation-delay: 0.3s; }
     a.button:nth-of-type(3) { animation-delay: 0.4s; }
@@ -97,52 +140,69 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes buttonIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: auto;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="layout">
 
-    <h1>Tran Huu Duc Hieu</h1>
+    <!-- Main Profile -->
+    <div class="container">
+      <h1>Tran Huu Duc Hieu</h1>
 
-    <p>Informatics Student at HUS High School for Gifted Students</p>
-    <p class="interests">🎸 Guitar · ⚽ Football · 🤖 Arduino</p>
+      <p>Informatics Student at HUS High School for Gifted Students</p>
+      <p class="interests">🎸 Guitar · ⚽ Football · 🤖 Arduino</p>
 
-    <a class="button" href="https://instagram.com/thdh__1410" target="_blank">
-      📸 Instagram
-    </a>
+      <a class="button" href="https://instagram.com/thdh__1410" target="_blank">📸 Instagram</a>
+      <a class="button" href="https://github.com/Duchieu1410" target="_blank">💻 GitHub</a>
+      <a class="button" href="https://discord.com" target="_blank">💬 Discord: tranhuuduchieu_</a>
+      <a class="button" href="https://codeforces.com/profile/notTHDH" target="_blank">🧠 Codeforces</a>
+      <a class="button" href="mailto:tranhuuduchieuvn2009@gmail.com">✉️ Email</a>
+    </div>
 
-    <a class="button" href="https://github.com/Duchieu1410" target="_blank">
-      💻 GitHub
-    </a>
+    <!-- Achievements Sidebar -->
+    <div class="sidebar">
+      <h2>🏆 Achievements</h2>
 
-    <a class="button" href="https://discord.com" target="_blank">
-      💬 Discord: tranhuuduchieu_
-    </a>
+      <div class="achievement">
+        🥈 2nd Prize — Vietnam Olympiad in Informatics 2026
+      </div>
 
-    <a class="button" href="https://codeforces.com/profile/notTHDH" target="_blank">
-      🧠 Codeforces
-    </a>
+      <div class="achievement">
+        🥇 Co-Gold — ICPC National Vietnam 2025
+      </div>
 
-    <a class="button" href="mailto:tranhuuduchieuvn2009@gmail.com">
-      ✉️ Email
-    </a>
+      <div class="achievement">
+        🥇 Co-Gold — ICPC Regionals HCMC 2025
+      </div>
+
+      <div class="achievement">
+        🥉 3rd Place — MIT Battlecode HS Tournament (Gravy)
+      </div>
+    </div>
 
   </div>
 </body>
