@@ -2,233 +2,241 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tran Huu Duc Hieu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tran Huu Duc Hieu — Profile</title>
 
   <style>
-    /* ---------- Base ---------- */
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #214bd5, #2b2d6e);
+    /* --------- Theme / Variables --------- */
+    :root{
+      --bg-a: #2433b8; /* darker */
+      --bg-b: #2b2d6e; /* lighter */
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.10);
+      --glass-border: rgba(255,255,255,0.08);
+      --accent: #8b72ff;
+      --muted: rgba(255,255,255,0.8);
+      --max-width: 1200px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+    }
+
+    /* ---------- Reset & Base ---------- */
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--bg-a),var(--bg-b));
       color: white;
-      min-height: 100vh;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      animation: pageFade 1s ease forwards;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
     }
 
-    /* ---------- Layout ---------- */
-    .layout {
-      display: flex;
-      gap: 24px;
-      padding: 20px;
-      max-width: 900px;
-      width: 100%;
+    /* ---------- Page Frame ---------- */
+    .frame{
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns: 280px 1fr 280px; /* side - main - side */
+      gap:30px;
+      align-items:start;
     }
 
-    /* ---------- Main Card ---------- */
-    .container {
-      flex: 1;
-      text-align: center;
-      padding: 30px;
-      border-radius: 20px;
-
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-
-      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-      animation: fadeUp 0.8s ease forwards;
+    /* make center more prominent on large screens */
+    @media (min-width:1100px){
+      .frame{ grid-template-columns: 300px 460px 300px; }
     }
 
-    /* ---------- Sidebar ---------- */
-    .sidebar {
-      width: 280px;
-      padding: 26px;
-      border-radius: 20px;
-
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-
-      animation: fadeRight 0.9s ease forwards;
+    /* ---------- Panels (shared) ---------- */
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: var(--radius-lg);
+      padding:24px;
+      box-shadow: 0 12px 30px rgba(8,10,30,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid var(--glass-border);
     }
 
-    .sidebar h2 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 1.3rem;
-      letter-spacing: 0.3px;
+    /* slightly taller, centered column visual weight */
+    .main{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      padding:36px 32px;
     }
 
-    .achievement {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 14px;
-      margin-bottom: 14px;
-      font-size: 0.9rem;
-      line-height: 1.4;
-
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .sidebar{
+      padding:28px 22px;
     }
 
-    .achievement:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        0 10px 20px rgba(0,0,0,0.25),
-        inset 0 0 0 1px rgba(160,140,255,0.4);
+    /* ---------- Typography ---------- */
+    h1{
+      margin:0 0 6px 0;
+      font-size:1.9rem;
+      line-height:1.05;
+      letter-spacing:0.2px;
+      font-weight:700;
+    }
+    .subtitle{ color:var(--muted); margin:8px 0 18px; }
+
+    h2{ margin:0 0 18px; font-size:1.2rem; display:flex; align-items:center; gap:10px; }
+    h2 .icon{ font-size:1.15rem; }
+
+    .chips{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:18px }
+    .chip{ background:rgba(255,255,255,0.04); padding:6px 12px; border-radius:999px; font-weight:600; font-size:0.9rem; color:var(--muted) }
+
+    /* ---------- Card item ---------- */
+    .item{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: var(--radius-md);
+      padding:14px 16px;
+      margin-bottom:14px;
+      border:1px solid rgba(255,255,255,0.04);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .item:hover{ transform: translateY(-6px); box-shadow:0 8px 30px rgba(12,10,40,0.45) }
+
+    .item .left{
+      min-width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      font-size:1.05rem;
+    }
+    .item .body{ flex:1 }
+    .item .title{ font-weight:700; margin-bottom:4px }
+    .item .desc{ color:var(--muted); font-size:0.95rem }
+
+    /* ---------- Buttons (center) ---------- */
+    .links{ width:100%; display:flex; flex-direction:column; gap:12px; margin-top:12px }
+    .btn{ display:flex; gap:10px; align-items:center; justify-content:center; padding:12px 18px; border-radius:12px; font-weight:700; text-decoration:none; color:#2f2a74; background:linear-gradient(180deg,#ffffff,#f0efff); border:1px solid rgba(0,0,0,0.06) }
+
+    /* ---------- Achievements accent line ---------- */
+    .aside-title{ color:var(--muted); font-size:0.9rem; margin-bottom:18px }
+
+    /* ---------- Footer small ---------- */
+    .small{ font-size:0.86rem; color:rgba(255,255,255,0.7); margin-top:18px }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:900px){
+      .frame{ grid-template-columns: 1fr; }
+      .main{ order:1 }
+      .sidebar{ order:2 }
+      .panel{ padding:20px }
     }
 
-    /* ---------- Text ---------- */
-    h1 {
-      margin: 10px 0 6px;
-      font-size: 1.85rem;
-    }
-
-    p {
-      opacity: 0.85;
-      margin-bottom: 10px;
-    }
-
-    .interests {
-      font-size: 0.95rem;
-      opacity: 0.75;
-      margin-bottom: 24px;
-    }
-
-    /* ---------- Buttons ---------- */
-    a.button {
-      display: block;
-      text-decoration: none;
-      color: #3a2fa0;
-      background: linear-gradient(135deg, #ffffff, #f0efff);
-      padding: 14px;
-      margin: 14px 0;
-      border-radius: 14px;
-      font-weight: 600;
-
-      opacity: 0;
-      transform: translateY(10px);
-      animation: buttonIn 0.6s ease forwards;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    a.button:nth-of-type(1) { animation-delay: 0.2s; }
-    a.button:nth-of-type(2) { animation-delay: 0.3s; }
-    a.button:nth-of-type(3) { animation-delay: 0.4s; }
-    a.button:nth-of-type(4) { animation-delay: 0.5s; }
-    a.button:nth-of-type(5) { animation-delay: 0.6s; }
-
-    a.button:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 15px 30px rgba(76, 60, 167, 0.35),
-        0 0 0 1px rgba(120, 100, 255, 0.25);
-    }
-
-    /* ---------- Animations ---------- */
-    @keyframes pageFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeRight {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes buttonIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---------- Mobile ---------- */
-    @media (max-width: 768px) {
-      .layout {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: auto;
-      }
-    }
   </style>
 </head>
-
 <body>
-  <div class="layout">
+  <div class="frame">
 
-    <!-- Skills & Hobbies Sidebar -->
-    <div class="sidebar">
-      <h2>🛠️ Skills & Hobbies</h2>
-    
-      <div class="achievement">
-        🧠 <strong>Competitive Programming</strong><br>
-        4 years of experience in algorithmic problem solving
-      </div>
-    
-      <div class="achievement">
-        💻 <strong>Programming Languages</strong><br>
-        C++ · Python · Java
-      </div>
-    
-      <div class="achievement">
-        🎸 <strong>Music</strong><br>
-        Casual guitarist
-      </div>
-    
-      <div class="achievement">
-        🤖 <strong>Tech Interests</strong><br>
-        Arduino · Systems · Algorithms
-      </div>
-    </div>
-    
+    <!-- LEFT: Skills & Hobbies -->
+    <aside class="panel sidebar">
+      <h2><span class="icon">🛠️</span> Skills & Hobbies</h2>
 
-    <!-- Main Profile -->
-    <div class="container">
-      <h1>Tran Huu Duc Hieu</h1>
-
-      <p>Informatics Student at HUS High School for Gifted Students</p>
-      <p class="interests">🎸 Guitar · ⚽ Football · 🤖 Arduino</p>
-
-      <a class="button" href="https://instagram.com/thdh__1410" target="_blank">📸 Instagram</a>
-      <a class="button" href="https://github.com/Duchieu1410" target="_blank">💻 GitHub</a>
-      <a class="button" href="https://discord.com" target="_blank">💬 Discord: tranhuuduchieu_</a>
-      <a class="button" href="https://codeforces.com/profile/notTHDH" target="_blank">🧠 Codeforces</a>
-      <a class="button" href="mailto:tranhuuduchieuvn2009@gmail.com">✉️ Email</a>
-    </div>
-
-    <!-- Achievements Sidebar -->
-    <div class="sidebar">
-      <h2>🏆 Achievements</h2>
-
-      <div class="achievement">
-        🥈 2nd Prize — Vietnam Olympiad in Informatics 2026
+      <div class="item">
+        <div class="left">🧠</div>
+        <div class="body">
+          <div class="title">Competitive Programming</div>
+          <div class="desc">4 years of experience solving algorithmic problems and contests (CF/ICPC practice).</div>
+        </div>
       </div>
 
-      <div class="achievement">
-        🥇 Co-Gold — ICPC National Vietnam 2025
+      <div class="item">
+        <div class="left">💻</div>
+        <div class="body">
+          <div class="title">Programming Languages</div>
+          <div class="desc">C++ · Python · Java — comfortable with algorithmic implementations and small tools.</div>
+        </div>
       </div>
 
-      <div class="achievement">
-        🥇 Co-Gold — ICPC Regionals HCMC 2025
+      <div class="item">
+        <div class="left">🎸</div>
+        <div class="body">
+          <div class="title">Music</div>
+          <div class="desc">Casual guitarist — enjoy learning songs and playing with friends.</div>
+        </div>
       </div>
 
-      <div class="achievement">
-        🥉 3rd Place — MIT Battlecode HS Tournament (Gravy)
+      <div class="item">
+        <div class="left">🤖</div>
+        <div class="body">
+          <div class="title">Tech Interests</div>
+          <div class="desc">Arduino · Systems · Robotics · Algorithms</div>
+        </div>
       </div>
-    </div>
+
+      <div class="small">Want skill bars, tooltips, or progress values? I can add them.</div>
+    </aside>
+
+    <!-- CENTER: Main profile -->
+    <main class="panel main">
+      <h1>Tran Huu<br> Duc Hieu</h1>
+      <div class="subtitle">Informatics Student at HUS High School for Gifted Students</div>
+
+      <div class="chips">
+        <div class="chip">🎸 Guitar</div>
+        <div class="chip">⚽ Football</div>
+        <div class="chip">🤖 Arduino</div>
+      </div>
+
+      <div style="width:100%; max-width:320px">
+        <div class="links">
+          <a class="btn" href="https://instagram.com/thdh__1410" target="_blank">📸 Instagram</a>
+          <a class="btn" href="https://github.com/Duchieu1410" target="_blank">💻 GitHub</a>
+          <a class="btn" href="https://discord.com" target="_blank">💬 Discord: tranhuuduchieu_</a>
+          <a class="btn" href="https://codeforces.com/profile/notTHDH" target="_blank">🧠 Codeforces</a>
+          <a class="btn" href="mailto:tranhuuduchieuvn2009@gmail.com">✉️ Email</a>
+        </div>
+      </div>
+
+      <div class="small">Designed for clearer hierarchy, better spacing and readable contrast across screen sizes.</div>
+    </main>
+
+    <!-- RIGHT: Achievements -->
+    <aside class="panel sidebar">
+      <h2><span class="icon">🏆</span> Achievements</h2>
+
+      <div class="item">
+        <div class="left">🥈</div>
+        <div class="body">
+          <div class="title">2nd Prize — VOI 2026</div>
+          <div class="desc">Vietnam Olympiad in Informatics — high national ranking.</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="left">🥇</div>
+        <div class="body">
+          <div class="title">Co-Gold — ICPC National 2025</div>
+          <div class="desc">Team medal at national ICPC competition.</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="left">🥇</div>
+        <div class="body">
+          <div class="title">Co-Gold — ICPC Regionals HCMC 2025</div>
+          <div class="desc">Regional success and contest experience.</div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="left">🥉</div>
+        <div class="body">
+          <div class="title">3rd Place — MIT Battlecode HS (Gravy)</div>
+          <div class="desc">Team placed third in the tournament.</div>
+        </div>
+      </div>
+
+      <div class="small">Would you like the achievements sorted by date or to show contest links?</div>
+    </aside>
 
   </div>
 </body>
